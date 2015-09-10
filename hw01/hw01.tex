@@ -1,0 +1,45 @@
+\documentclass[fleqn]{homework}
+
+\student{Stephen Brennan (smb196)}
+\course{EECS 477}
+\assignment{Homework 1}
+\duedate{September 11, 2015}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage{graphicx}
+
+\begin{document}
+  \maketitle
+
+  \begin{problem}{1}
+    \begin{question}
+      Consider a greedy algorithm for Vertex Cover in which we repeatedly choose
+      a vertex of maximum degree, add it to the vertex cover, and then remove it
+      and all its incident edges. \\
+      \textbf{(a)} Show that this algorithm is optimal on the two graphs
+      discussed in class: \textbf{(i)} an $n$ vertex star graph, \textbf{(ii)}
+      an $K_4$ minus one edge (where $K_n$ is the complete graph on $n$ vertices).\\
+      \textbf{(b)} Show that this algorithm is not a 2-approximation algorithm.
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{2}
+    \begin{question}
+      Consider the following linear program:
+      \begin{align*}
+        \text{max } 3x_1 - 5x_2 & \\
+        \text{s.t.  } 4x_1 + 5x_2 &\ge 3 \\
+        6(x_1 - x_2) &= 7 \\
+        x_1 + 8x_2 &\le 20 \\
+        x_1, x_2 &\ge 0
+      \end{align*}
+      \textbf{(a)} Put this program in standard form.\\
+      \textbf{(b)} Use octave to solve the original linear program.\\
+      \textbf{(c)} State the corresponding optimal basic solutions in terms of
+      the matrices $\mathcal{B}$ and $\mathcal{L}$, and state the corresponding
+      values of $\pi$.
+    \end{question}
+  \end{problem}
+
+\end{document}
