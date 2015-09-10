@@ -150,6 +150,16 @@
       appropriately chosen values of $c$, $w$, and $W$, or prove that $F/I$
       (when $I>0$) can be made arbitrarily large.
     \end{question}
+
+    Suppose we would like to make the ratio $F/I$ equal to some arbitrary number
+    $m$.  If we let $W=1$, $c^T = [1, 2m]$, and $w^T = [1, 2]$, then we have
+    created a knapsack problem with two objects weighing 1 and 2 respectively.
+    The weight limit is 1, and the benefit of the two objects is 1 and $2m$
+    respectively.  The solution to the integral problem will choose one of the
+    first object, giving $I$ a value of 1.  The solution to the fractional
+    problem will be to chose half of the second object, giving a $F$ a value of
+    $m$.  Therefore, by setting these values for $c$, $w$, and $W$, we can make
+    the ratio $F/I = m$.
   \end{problem}
 
   \begin{problem}{7}
