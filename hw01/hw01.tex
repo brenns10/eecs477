@@ -22,6 +22,16 @@
       an $K_4$ minus one edge (where $K_n$ is the complete graph on $n$ vertices).\\
       \textbf{(b)} Show that this algorithm is not a 2-approximation algorithm.
     \end{question}
+    \textbf{(a) (i)} For an $n$ vertex star graph, the algorithm immediately
+    chooses the hub, and adds it to the VC.  All the edges are incident to the
+    hub, so they are all removed and the algorithm terminates.  This vertex
+    cover is optimal, since any smaller vertex cover would be empty.
+    \textbf{(ii)} For $K_4$ minus one odge, assume we label the vertices 1-4,
+    where the missing edge is between vertices 1 and 2.  The two highest degree
+    vertices are 3 and 4.  Regardless of which one is chosen first, the
+    algorithm will end up choosing 3 and 4 as a vertex cover.  This is optimal
+    since there is no vertex cover of size 1 (i.e., there is no single vertex
+    incident to all edges).
   \end{problem}
 
   \begin{problem}{2}
