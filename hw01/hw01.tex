@@ -106,8 +106,8 @@
       x_1, x_2, x_3, x_4, x_5 &\geq 0
     \end{align*}
 
-    The solution provided by Octave is $x_1 = 12$, $x_2 = x_3 = x_4 = x_5 = 0$.
-    The Octave code is provided in \texttt{4.m}.
+    The solution provided by Octave is $x_1 = 12$, $x_2 = x_3 = x_4 = x_5 = 0$,
+    giving a profit of 360.  The Octave code is provided in \texttt{4.m}.
   \end{problem}
 
   \begin{problem}{5}
@@ -118,6 +118,19 @@
       differs from that of the previous problem, write a short intuitive
       explanation to justify the discrepancy.
     \end{question}
+
+    This can be formulated as the same linear program as Problem 4, with the
+    additional constraint that all the variables are integers.
+
+    \begin{align*}
+      \max 30x_1 + 20x_2 + 100x_3 + 90x_4 + 160 x_5 &\\
+      \text{s.t. } 5x_1 + 10x_2 + 20 x_3 + 30x_4 + 40x_5 &\leq 60 \\
+      x_1, x_2, x_3, x_4, x_5 &\geq 0 \\
+      x_1, x_2, x_3, x_4, x_5 &\text{ integer} \\
+    \end{align*}
+
+    The solution provided by Octave is $x_1 = 12$, $x_2 = x_3 = x_4 = x_5 = 0$,
+    giving a profit of 360.  The Octave code is provided in \texttt{5.m}.
   \end{problem}
 
   \begin{problem}{6}
