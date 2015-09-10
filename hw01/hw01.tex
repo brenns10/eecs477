@@ -28,7 +28,7 @@
     \begin{question}
       Consider the following linear program:
       \begin{align*}
-        \text{max } 3x_1 - 5x_2 & \\
+        \max 3x_1 - 5x_2 & \\
         \text{s.t.  } 4x_1 + 5x_2 &\ge 3 \\
         6(x_1 - x_2) &= 7 \\
         x_1 + 8x_2 &\le 20 \\
@@ -39,6 +39,79 @@
       \textbf{(c)} State the corresponding optimal basic solutions in terms of
       the matrices $\mathcal{B}$ and $\mathcal{L}$, and state the corresponding
       values of $\pi$.
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{3}
+    \begin{question}
+      Use Octave to solve the following integer linear program:
+      \begin{align*}
+        \max 3x_1 - 5x_2 & \\
+        \text{s.t.  } 4x_1 + 5x_2 &\ge 3 \\
+        6(x_1 - x_2) &= 7 \\
+        x_1 + 8x_2 &\le 20 \\
+        x_1, x_2 &\text{ integer}
+      \end{align*}
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{4}
+    \begin{question}
+      In this problem, you will consider an instance of the fractional knapsack
+      problem in which there are five items of weights 5, 10, 20, 30, 40 and
+      benefit 30, 20, 100, 90, 160 (the benefit is the profit gained by loading
+      the full item in the knapsack).  Formulate the problem as a linear program
+      and use octave to solve it.
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{5}
+    \begin{question}
+      Suppose that you have the same items as in the previous problem, but you
+      wish to solve an integer knapsack problem.  Formulate the problem as an
+      integer linear program and use octave to solve it.  If the solution
+      differs from that of the previous problem, write a short intuitive
+      explanation to justify the discrepancy.
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{6}
+    \begin{question}
+      In this question, you are asked to create an instance of the knapsack
+      problem in which there is a large discrepancy between the fractional and
+      integral version.  Specifically, let
+
+      \begin{align*}
+        F &= \max \{c^T x: w^T x \leq W, 0 \leq x \leq e\}\\
+        I &= \max \{c^T x: w^T x \leq W, x\in\{0,1\}^n\}
+      \end{align*}
+
+      where $x$ is an $n$ vector and $e$ is the $n$ vector consisting of 1s.  In
+      this problem, you will attempt to make the ratio $F/I$ as large as
+      possible while $I>0$.  Specifically, either give an octave example with
+      appropriately chosen values of $c$, $w$, and $W$, or prove that $F/I$
+      (when $I>0$) can be made arbitrarily large.
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{7}
+    \begin{question}
+      A corporation outsources work to external contractors.  The work is done
+      by teams, each of which is capable of doing all types of work.  The work
+      is divided across several geographic districts, where the $j$th district
+      requires exactly $r_j$ teams.  The contractors are of two types:
+      experienced and inexperienced.
+
+      Contractor $i$ can supply at most $u_i$ teams and quotes a price $c_{ij}$
+      to have one team conduct the work in the $j$th district.  The objective is
+      to allocate the work in the districts to various contractors so that each
+      district has at least one experienced contractor assigned to it.  The
+      values of $r_j$ and $u_i$ are integers.\\
+      \textbf{(a)} Formulate the problem as an integer linear program.\\
+      \textbf{(b)} Formulate its linear relaxation.\\
+      \textbf{(c)} Give an example with appropriately chosen values of $r_i$,
+    $u_i$, and $c_{ij}$ where there is an optimal basic solution that is not
+    integer, or document at least five attempts to find such an example.
     \end{question}
   \end{problem}
 
