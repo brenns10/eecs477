@@ -51,6 +51,22 @@
         $\mathcal{L}$, and state the corresponding values of $\pi$.}
     \end{question}
 
+    \textbf{(a)} Standard form requires minimization, all variables $\geq$ 0,
+    and all constraints to be in the form $\sum a_i x_i = b$.  So we must
+    introduce two slack varibles, $x_3$ and $x_4$:
+
+    \begin{align*}
+      \min -3x_1 + 5x_2 & \\
+      \text{s.t. } 4x_1 + 5x_2 - x_3 &= 3 \\
+      6x_1 - 6x_2 &= 7 \\
+      x_1 + 8x_2 + x_4 &= 20 \\
+      x_1, x_2, x_3, x_4 &\geq 0
+    \end{align*}
+
+    Octave code with this formulation of the problem is provided in
+    \texttt{2a.m}, for verification that this formulation gives the same
+    solution as found in (b).
+
     \textbf{(b)} $x_1 = 1.16667$, $x_2 = 0$, giving a maximum value of 3.5.  The
     code for this can be found in \texttt{2b.m}.
   \end{problem}
