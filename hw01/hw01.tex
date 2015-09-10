@@ -97,6 +97,17 @@
       the full item in the knapsack).  Formulate the problem as a linear program
       and use octave to solve it.
     \end{question}
+
+    This can be formulated as a linear program (not in standard form) as follows:
+    
+    \begin{align*}
+      \max 30x_1 + 20x_2 + 100x_3 + 90x_4 + 160 x_5 &\\
+      \text{s.t. } 5x_1 + 10x_2 + 20 x_3 + 30x_4 + 40x_5 &\leq 60 \\
+      x_1, x_2, x_3, x_4, x_5 &\geq 0
+    \end{align*}
+
+    The solution provided by Octave is $x_1 = 12$, $x_2 = x_3 = x_4 = x_5 = 0$.
+    The Octave code is provided in \texttt{4.m}.
   \end{problem}
 
   \begin{problem}{5}
