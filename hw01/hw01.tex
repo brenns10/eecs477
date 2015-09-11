@@ -216,6 +216,14 @@
       \sum_{i=1}^r x_{ij} &\geq 1, \:\: \forall j \\
       x_{ij} &\geq 0, \:\: \forall i,j \\
     \end{align*}
+
+    \textbf{(c)} I was not able to find any instances of this problem where
+    solutions were not integral.  I tried several educated guesses, but finally
+    wrote a script to automate my attempts using Python and Octave.  I tried
+    over 4096 combinations of costs on a problem with 3 contractors, 3
+    locations, and 2 experienced contractors.  My code is provided as
+    \texttt{p7.py}, and can be run with the command \texttt{python p7.py} (with
+    Python 3 and Octave installed).
   \end{problem}
 
 \end{document}
