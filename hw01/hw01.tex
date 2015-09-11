@@ -131,8 +131,11 @@
       x_1, x_2, x_3, x_4, x_5 &\text{ integer} \\
     \end{align*}
 
-    The solution provided by Octave is $x_1 = 12$, $x_2 = x_3 = x_4 = x_5 = 0$,
-    giving a profit of 360.  The Octave code is provided in \texttt{5.m}.
+    The solution provided by Octave is $x_1 = x_2 = x_4 = 0$, $x_3 = x_5 = 1$,
+    giving a profit of 350.  The Octave code is provided in \texttt{5.m}.  The
+    reason for the discrepency is that an additional constraint was added to the
+    optimization problem, meaning that the optimal profit had to be less than or
+    equal to the less constrained version of the problem.
   \end{problem}
 
   \begin{problem}{6}
