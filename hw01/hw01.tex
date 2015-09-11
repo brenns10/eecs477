@@ -186,6 +186,36 @@
     $u_i$, and $c_{ij}$ where there is an optimal basic solution that is not
     integer, or document at least five attempts to find such an example.
     \end{question}
+
+    In this problem, I will assume that there are $n$ contractors.  I will
+    further assume that contractors 1 through $r$ are experienced, and the rest
+    are inexperienced.  I will also assume that the number of locations is $k$.
+    I will use the notation $x_{ij}$ to represent the number of teams from
+    contractor $i$ at location $j$, although in linear programming, $x$ is a
+    vector, not a matrix.
+
+    \textbf{(a)} Here is an ILP formulation, assuming that the goal is to
+    satisfy these requirements while minimizing cost.
+
+    \begin{align*}
+      \min \sum_{i=1}^n \sum_{j=1}^k c_{ij} x_{ij} & \\
+      \text{s.t. } \sum_{j=1}^k x_{ij} &\leq u_i, \:\: \forall i \\
+      \sum_{i=1}^n x_{ij} &= r_j, \:\: \forall j \\
+      \sum_{i=1}^r x_{ij} &\geq 1, \:\: \forall j \\
+      x_{ij} &\geq 0, \:\: \forall i,j \\
+      x_{ij} &\text{ integer}
+    \end{align*}
+
+    \textbf{(b)} The linear relaxation is nearly identical, simply removing the
+    integral constraint:
+
+    \begin{align*}
+      \min \sum_{i=1}^n \sum_{j=1}^k c_{ij} x_{ij} & \\
+      \text{s.t. } \sum_{j=1}^k x_{ij} &\leq u_i, \:\: \forall i \\
+      \sum_{i=1}^n x_{ij} &= r_j, \:\: \forall j \\
+      \sum_{i=1}^r x_{ij} &\geq 1, \:\: \forall j \\
+      x_{ij} &\geq 0, \:\: \forall i,j \\
+    \end{align*}
   \end{problem}
 
 \end{document}
