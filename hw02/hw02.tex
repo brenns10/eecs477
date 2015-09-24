@@ -27,6 +27,39 @@
       the matrices $\mathcal{B}$ and $\mathcal{L}$, and state the corresponding
       values of $\pi$.
     \end{question}
+
+    From Homework 1, the standard form is:
+
+    \begin{align*}
+      \min -3x_1 + 5x_2 & \\
+      \text{s.t. } 4x_1 + 5x_2 - x_3 &= 3 \\
+      6x_1 - 6x_2 &= 7 \\
+      x_1 + 8x_2 + x_4 &= 20 \\
+      x_1, x_2, x_3, x_4 &\geq 0
+    \end{align*}
+
+    And the solution is
+    $x^{*T} = (\frac{7}{6}, 0, \frac{7}{6}, 18 \frac{5}{6})$.  So, the
+    corresponding basic variables (nonzero) are $x_1, x_3, x_4$.  Therefore, we
+    have the matrices $B$ and $L$:
+
+    \begin{equation}
+      B = \begin{bmatrix*} 4 & -1 & 0 \\ 6 & 0 & 0 \\ 1 & 0 & 1 \end{bmatrix*},\:\:
+      L = \begin{bmatrix*} -1 \\ 0 \\ 0 \end{bmatrix*}
+    \end{equation}
+
+    This means that the solution in terms of $B$ and $L$ is
+    $x_B^T = (x_1, x_3, x_4) = (\frac{7}{6}, \frac{7}{6}, 18 \frac{5}{6})$, and
+    $x_L^T = (x_2) = (0)$.
+
+    In order to determine the corresponding values of $\pi$, we use the equation
+    $\pi^T = c_B^T B^{-1}$.  First, we compute $B^{-1}$:
+
+    \begin{equation}
+      B^{-1} = \begin{bmatrix*} -5 & 0 & -1 \\ -7 & -1 & -1 \\ -2 & -1 & -2 \end{bmatrix*}
+    \end{equation}
+
+    From this, we can compute that $\pi^T = (15, 0, 3)$.
   \end{problem}
 
   \begin{problem}{2}
