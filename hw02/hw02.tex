@@ -173,6 +173,66 @@
       programming. The values of $n$ and $m$ should be polynomial in the number
       of variables and constraints in the linear program.
     \end{question}
+
+    \textbf{(a)} Given a set of linear inequalities, we can create a linear
+    programming problem as follows
+
+    \begin{align*}
+      &\min 0 \\
+      &\text{s.t.  the given inequalities}
+    \end{align*}
+
+    We use our linear programming algorithm to solve this.  There is no way for
+    this linear program to be unbounded, so if the LP algorithm fails, the
+    inequalities are infeasible.  If the LP algorithm succeeds, the inequalities
+    are feasible and the optimal solution returned is a feasible setting of the
+    variables for the LIF problem.
+
+    \textbf{(b)} Assume that the linear programming problem is given in standard
+    form: $\min c^T x$, s.t. $Ax=b$.  We will solve this with LIF by creating a
+    system of linear inequalities on the vector $y$ such that $y^T=(x^T,\pi^T)$
+    for the primal and dual of this problem.  The inequalities will impose the
+    following constraints on $y$:
+
+    \begin{itemize}
+    \item The $x$ portion of $y$ must satisfy the constraints of the original
+      LP.  That is, $Ax = b$.  Expressed as inequalities, this becomes
+      $Ax \le b$, $Ax \ge b$, and $x \ge 0$.
+    \item The $\pi$ portion of $y$ must satisfy the constraints of the dual to
+      the LP.  That is, $A^T \pi = c$.  Expressed as inequalities, this becomes
+      $A^T \pi \le c$, $A^T \pi \ge c$, and $x \ge 0$.
+    \item Taken together, $x$ and $\pi$ must satisfy strong duality.  That is,
+      $b^T \pi - c^T x = 0$.  Expressed as inequalities, this becomes
+      $b^T \pi - c^T x \ge 0$ and $b^T \pi - c^T x \le 0$.
+    \end{itemize}
+
+    We can write this as a single matrix inequality:
+
+    \begin{equation}
+      \begin{bmatrix*}[r]
+        A & 0 \\ 
+        -A & 0 \\
+        I & 0 \\
+        0 & A^T \\
+        0 & -A^T \\
+        0 & I \\
+        -c^T & b^T \\ 
+        c^T & -b^T 
+      \end{bmatrix*}
+      \begin{bmatrix*} 
+        x \\ \pi
+      \end{bmatrix*} \ge
+      \begin{bmatrix*}[r]
+        b \\ -b \\ \vec{0} \\ c \\ -c \\ \vec{0} \\ 0 \\ 0
+      \end{bmatrix*}
+    \end{equation}
+
+    The constraints of the first point are the first three rows, the constraints
+    of the second point are the next three rows, and the constraints of the
+    third point are the final two rows.  Any solution to this set of
+    inequalities will satisfy the constraints of the primal, the constraints of
+    the dual, and also the strong duality constraints.  Therefore, it will be a
+    pair $(x,\pi)$ of optimal solutions to the primal and dual.
   \end{problem}
 
   \begin{problem}{7}
