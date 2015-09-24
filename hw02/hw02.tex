@@ -1,0 +1,204 @@
+\documentclass[fleqn]{homework}
+
+\student{Stephen Brennan (smb196)}
+\course{EECS 477}
+\assignment{Homework 2}
+\duedate{September 25, 2015}
+
+\usepackage{mathtools}
+\usepackage{multicol}
+%\usepackage{graphicx}
+
+\begin{document}
+  \maketitle
+
+  \begin{problem}{1}
+    \begin{question}
+      Solve problem 2(c) in homework assignment 1:\\
+      Consider the following linear program:
+      \begin{align*}
+        \max 3x_1 - 5x_2 & \\
+        \text{s.t.  } 4x_1 + 5x_2 &\ge 3 \\
+        6(x_1 - x_2) &= 7 \\
+        x_1 + 8x_2 &\le 20 \\
+        x_1, x_2 &\ge 0
+      \end{align*}
+      \textbf{(c)} State the corresponding optimal basic solutions in terms of
+      the matrices $\mathcal{B}$ and $\mathcal{L}$, and state the corresponding
+      values of $\pi$.
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{2}
+    \begin{question}
+      Consider the following linear programs:
+      \begin{multicols}{3}
+      \noindent \textbf{Program 1}
+      \begin{align*}
+        \max x_1 + 2x_2 & \\
+        \text{s.t.  } x_1 + x_2 &\le 5 \\
+        6x_1 – 3x_2 &\le3 \\
+        5x_1 &\le 24 \\
+        6x_2 &\le 9 \\
+        x_1, x_2 &\ge 0
+      \end{align*}
+      \textbf{Program 2}
+      \begin{align*}
+        \min x_1 + x_3 & \\
+        \text{s.t.  } x_1 + 2x_2 &\le 5 \\
+        x_1 + 2x_3 &= 6 \\
+        x_1, x_2, x_3 &\ge 0
+      \end{align*}
+      \textbf{Program 3}
+      \begin{align*}
+        \max 3x_1 - 5x_2 & \\
+        \text{s.t.  } 4x_1 + 5x_2 &\ge 3 \\
+        6(x_1 - x_2) &= 7 \\
+        x_1 + 8x_2 &\le 20 \\
+        x_1, x_2 &\ge 0 \\
+      \end{align*}
+      \textbf{Program 4}
+      \begin{align*}
+        \max 3x_1 + 2x_2 + 5x_3 & \\
+        \text{s.t.  } 5x_1 + 3x_2 + x_3 &= -8 \\
+        4x_1 + 2x_2+ 8x_3 &\le 23 \\
+        6x_1 + 7x_2 + 3x_3 &\ge 1 \\
+        x_1 \le 4, x_3 &\ge 0
+      \end{align*}
+      \textbf{Program 5}
+      \begin{align*}
+        \min c & \\
+        \text{s.t.  } x_1 + 2x_2 + \frac{x_3}{2} &\le c \\
+        3x_1 + 2x_2 + x_3 &\le c \\
+        x_1 + x_2 + x_3 &= 1 \\
+        x_1, x_2, x_3 &\ge 0
+      \end{align*}
+      \end{multicols}
+      For each of these programs:\\
+      \textbf{(a)} Find an optimal solution x*, if any. Octave allowed.\\
+      \textbf{(b)} Find the dual of the linear program and write the
+      complementary slackness conditions.\\
+      \textbf{(c)} Find an optimal solution y* of the dual such that (x*, y*)
+      satisfy complementary slackness. Show your work.  Octave allowed. (If the
+      primal is infeasible or unbounded, you can skip this step.)
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{3}
+    \begin{question}
+      Write the dual and the complementary slackness conditions of the knapsack
+      instance at Homework Assignment 1, problem 4.
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{4}
+    \begin{question}
+      Write the dual and the complementary slackness conditions of the
+      contractor problem (Homework Assignment 1, problem 7).
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{5}
+    \begin{question}
+      Consider the following linear program:
+      \begin{align*}
+        \min x_1 + x_2 + 3x_3 + 2x_4 + 4x_5 & \\
+        \text{s.t. } x_1 + x_3 + x_5 &= 2 \\
+        x_4 - x_3 &= 1 \\
+        x_2 - x_1 &= -1 \\
+        x_2 + x_4 + x_5 &= 2 \\
+        0 \le x_1 &\le 1 \\
+        0 \le x_2 &\le 2 \\
+        0 \le x_3 &\le 1 \\
+        0 \le x_4 &\le 3 \\
+        0 \le x_5 &\le 2 \\
+      \end{align*}
+      \textbf{(a)} Show that every basic feasible solution is integer.\\
+      \textbf{(b)} Find an optimal basic feasible solution x* (octave allowed).\\
+      \textbf{(c)} Find the dual of the linear program and write the
+      complementary slackness conditions.\\
+      \textbf{(d)} Find an optimal solution y* of the dual such that $(x*, y*)$
+      satisfy complementary slackness. Show your work.\\
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{6}
+    \begin{question}
+      Given a set of $m$ linear inequalities on the $n$ variables
+      $x_1, x_2, \dots, x_n$, the \textit{linear inequality feasibility problem}
+      asks if there is a setting of the variables that simultaneously satisfies
+      all the inequalities. This question asks you to prove that linear
+      programming reduces to the linear inequality feasibility problem.
+
+      \textbf{(a)} Show that if we have an algorithm for linear programming, we
+      can use it to solve the linear inequality feasibility problem. The number
+      of variables and constraints that are used in the linear program should be
+      polynomial in $n$ and $m$.
+
+      \textbf{(b)} Conversely, show that if we have an algorithm for the linear
+      inequality feasibility problem, we can use it to solve linear
+      programming. The values of $n$ and $m$ should be polynomial in the number
+      of variables and constraints in the linear program.
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{7}
+    \begin{question}
+      Consider the minimum cost network flow problem defined on the following
+      network G=(V, E). The node set V consists of the six nodes a, b, c, d, e,
+      and f. Each node has a capacity, which is defined as the maximum amount of
+      flow that can cross that node. The nodes have supplies and capacities as
+      per the following table:
+
+      \begin{tabular}{rrr}
+        \hline
+        Node & $b_i$ & capacity \\
+        \hline
+        $a$ & 20 & 25 \\
+        $b$ & 5 & 35 \\
+        $c$ & -15 & 30 \\
+        $d$ & -10 & 10 \\
+        $e$ & 0 & 20 \\
+        \hline
+      \end{tabular}
+
+      The network has six arcs, whose costs, lower bounds, and upper bounds are
+      as follows:
+
+      \begin{tabular}{rrrr}
+        \hline
+        Arc & $c$ & $l$ & $u$ \\
+        \hline
+        $(a, b)$ & 4 & 5 & $\infty$ \\
+        $(a, c)$ & 6 & 3 & $\infty$ \\
+        $(b, c)$ & -2 & 0 & 25 \\
+        $(b, e)$ & 5 & 0 & 10 \\
+        $(c, d)$ & -3 & 5 & 10 \\
+        $(e, d)$ & 2 & 0 & $\infty$ \\
+        \hline
+      \end{tabular}
+
+      \textbf{(a)} Draw an equivalent minimum cost network flow problem on a
+      network in which nodes have no capacities, arc lower bounds are zero, arc
+      upper bounds are infinity, and costs are positive.
+
+      \textbf{(b)}Show that the following flow is feasible, and draw the
+      corresponding residual network:
+
+      \begin{tabular}{rr}
+        \hline
+        Arc & Flow \\
+        \hline
+        $(a, b)$ & 20 \\
+        $(a, c)$ & 0 \\
+        $(b, c)$ & 25 \\
+        $(b, e)$ & 0 \\
+        $(c, d)$ & 10 \\
+        $(e, d)$ & 0 \\
+        \hline
+      \end{tabular}
+
+    \end{question}
+  \end{problem}
+
+\end{document}
