@@ -1,0 +1,9 @@
+c = [1; 0; 1];
+A = [1, 2, 0; 1, 0, 2];
+b = [5; 6];
+lb = [];
+ub = [];
+ctype = "US";
+vartype = "CCC";
+sense = 1;
+[xmax, fmax, status, extra] = glpk(c, A, b, lb, ub, ctype, vartype, sense)
