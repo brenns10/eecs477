@@ -339,6 +339,72 @@
       Write the dual and the complementary slackness conditions of the
       contractor problem (Homework Assignment 1, problem 7).
     \end{question}
+
+    As I solved it in Homework 1, there are $n$ contractors, $k$ locations.
+    Contractors $1$ through $r$ are experienced, the rest are not.  Contractor
+    $i$ offers $u_i$ teams total, at a cost of $c_{ij}$ at location $j$.  And,
+    we require $r_j$ teams at each site.  This gave the following formulation
+    (without the integrality constraint):
+
+    \begin{align*}
+      \min \sum_{i=1}^n \sum_{j=1}^k c_{ij} x_{ij} & \\
+      \text{s.t. } \sum_{j=1}^k x_{ij} &\leq u_i, \:\: \forall 1 \le i \le n \\
+      \sum_{i=1}^n x_{ij} &= r_j, \:\: \forall 1 \le j \le k \\
+      \sum_{i=1}^r x_{ij} &\geq 1, \:\: \forall 1 \le j \le k \\
+      x_{ij} &\geq 0, \:\: \forall i,j \\
+    \end{align*}
+
+    To find the dual, we must make sure all inequalities in this formulation are
+    $\ge$, since the problem is minimization.  After this simple reformulation,
+    we have:
+
+    \begin{align*}
+      \min \sum_{i=1}^n \sum_{j=1}^k c_{ij} x_{ij} & \\
+      \text{s.t. } \sum_{j=1}^k -x_{ij} &\ge -u_i, \:\: \forall 1 \le i \le n \\
+      \sum_{i=1}^n x_{ij} &= r_j, \:\: \forall 1 \le j \le k \\
+      \sum_{i=1}^r x_{ij} &\geq 1, \:\: \forall 1 \le j \le k \\
+      x_{ij} &\geq 0, \:\: \forall i,j \\
+    \end{align*}
+
+    We have $nk$ variables and $n+2k$ constraints in the primal, so we will have
+    $n+2k$ variables and $nk$ constraints in the dual.  Variables $\pi_{1i}$
+    will correspond to the first group of constraints, and so on for $\pi_{2j}$
+    and $\pi_{3j}$.  The objective of the dual will be to maximize
+    $\sum_{i=1}^n -\pi_{1i} u_i + \sum_{j=1}^k \pi_{2j} r_j + \sum_{j=1}^k
+    \pi_{3j}$ (one summation for each group of constraints in the primal).
+
+    The constraints in the dual will correspond to variables in the primal.
+    They will all be $\le$ constraints, since $x_{ij} \ge 0$ in the primal.
+    Essentially, the left hand side of each constraint is the coefficient of
+    $x_{ij}$ in each constraint in the primal, times the corresponding $\pi$
+    variable, all of which is $\le c_{ij}$.  For the first set of constraints,
+    the only time $x_{ij}$ has a nonzero coefficient is in the inequality
+    associated with $\pi_{1i}$ where it gets a cefficient of $-1$.  For the
+    second and third sets of constraints, the only time $x_{ij}$ has a nonzero
+    coefficient is in the inequalities associated with $\pi_{2j}$ and $\pi_{3j}$
+    respectively, where they both have a coefficient of $1$.  Therefore, the
+    constraints will be $-\pi_{1i} + \pi_{2j} + \pi_{3j} \le c_{ij}$ for all
+    pairs of $i$ and $j$.
+
+    Putting all this together, the final representation of the dual is:
+
+    \begin{align*}
+      \max \sum_{i=1}^n -\pi_{1i} u_i + \sum_{j=1}^k \pi_{2j} r_j + \sum_{j=1}^k
+    \pi_{3j} &\\
+      -\pi_{1i} + \pi_{2j} + \pi_{3j} &\le c_{ij} \:\: \forall i \in [1, n], j \in [1, k] \\
+      \pi_{1i} &\ge 0, \:\: \forall i \in [1, n] \\
+      \pi_{2j} &\text{ unbounded } \forall j \in [1, k] \\
+      \pi_{3j} &\ge 0, \:\: \forall j \in [1, k] \\
+    \end{align*}
+
+    The complementary slackness conditions are then laid out as follows:
+
+    \begin{align*}
+      x_{ij} = 0 &\text{ or } -\pi_{1i} + \pi_{2j} + \pi_{3j} = c_{ij} \:\: \forall i \in [1,n], j \in [1, k] \\
+      \pi_{1i} = 0 &\text{ or } \sum_{j=1}^k x_{ij} = u_{i} \:\: \forall i \in [1,n] \\
+      \pi_{2j} = 0 &\text{ or } \sum_{i=1}^n x_{ij} = r_j \:\: \forall j \in [1,k] \\
+      \pi_{3j} = 0 &\text{ or } \sum_{i=1}^n x_{ij} = 1 \:\: \forall j \in [1,k]
+    \end{align*}
   \end{problem}
 
   \begin{problem}{5}
