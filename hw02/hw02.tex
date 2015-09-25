@@ -248,7 +248,49 @@
     \end{align*}
 
     \textbf{Program 5: (a)} According to Octave, $x_1 = 0$, $x_2 = 0$,
-    $x_3 = 1$, $c = 1$.
+    $x_3 = 1$, $c = 1$.  \textbf{(b)} The dual is:
+
+    \begin{align*}
+      \max \pi_3 &\\
+      \text{s.t. } -\pi_1 - 3\pi_2 + \pi_3 &\le 0 \\
+      -2\pi_2 - 2\pi_2 + \pi_3 &\le 0 \\
+      -\frac{1}{2}\pi_1 - \pi_2 + \pi_3 &\le 0 \\
+      \pi-1 + \pi_2 &= 1 \\
+      \pi_1, \pi_2 &\ge 0 \\
+      \pi_3 &\text{ unconstrained}
+    \end{align*}
+
+    The dual is:
+
+    \begin{align*}
+      x_1 = 0 &\text{ or } -\pi_1 - 3\pi_2 + \pi_3 = 0 \\
+      x_2 = 0 &\text{ or } -2\pi_2 - 2\pi_2 + \pi_3 = 0 \\
+      x_3 = 0 &\text{ or } -\frac{1}{2}\pi_1 - \pi_2 + \pi_3 = 0 \\
+      x_4 = 0 &\text{ or } \pi-1 + \pi_2 = 1 \\
+      \pi_1 = 0 &\text{ or } -x_1 - 2x_2 - \frac{1}{2}x_3 + c = 0 \\
+      \pi_2 = 0 &\text{ or } -3x_1 - 2x_2 - x_3 + c = 0 \\
+      \pi_3 = 0 &\text{ or } x_1 + x_2 + x_3 = 1 \\
+    \end{align*}
+
+    \textbf{(c)} Applying the complementary slackness conditions and $x$:
+
+    \begin{align*}
+      \pi_1 = 0 &\text{ or } -0 - 2*0 - \frac{1}{2}*1 + 1 = 0 \\
+      \pi_2 = 0 &\text{ or } -3*0 - 2*0 -1 + 1 = 0 \\
+      \pi_3 = 0 &\text{ or } 0 + 0 + 1 = 1 \\
+    \end{align*}
+
+    We see that $\pi_1 = 0$, and so we use the remaining conditions on $x_3$ and
+    $c$:
+
+    \begin{align*}
+      -\pi_2 + \pi_3 &= 0 \\
+      \pi_2 &= 1
+    \end{align*}
+
+    This tells us that $\pi_2 = 1$ and $\pi_3 = 1$.  So, we have
+    $\pi^{*T} = (0, 1, 1)$, which has an objective value of 1, matching the
+    primal's objective value.
 
   \end{problem}
 
