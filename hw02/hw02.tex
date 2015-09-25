@@ -299,6 +299,39 @@
       Write the dual and the complementary slackness conditions of the knapsack
       instance at Homework Assignment 1, problem 4.
     \end{question}
+
+    In Homework 4, I formulated the knapsack instance as follows:
+
+    \begin{align*}
+      \max 30x_1 + 20x_2 + 100x_3 + 90x_4 + 160 x_5 &\\
+      \text{s.t. } 5x_1 + 10x_2 + 20 x_3 + 30x_4 + 40x_5 &\leq 60 \\
+      x_1, x_2, x_3, x_4, x_5 &\geq 0 \\
+      x_1, x_2, x_3, x_4, x_5 &\leq 1 \\
+    \end{align*}
+
+    So, the dual is:
+
+    \begin{align*}
+      \min 60\pi_1 + \pi_2 &\\
+      \text{s.t. } 5\pi_1 + \pi_2 &\ge 30 \\
+      10\pi_1 + \pi_2 &\ge 20 \\
+      20\pi_1 + \pi_2 &\ge 100 \\
+      30\pi_1 + \pi_2 &\ge 90 \\
+      40\pi_1 + \pi_2 &\ge 160 \\
+      \pi_1, \pi_2 &\ge 0
+    \end{align*}
+
+    The complementary slackness conditions are:
+
+    \begin{align*}
+      x_1 = 0 &\text{ or } 5\pi_1 + \pi_2 = 30 \\
+      x_2 = 0 &\text{ or } 10\pi_1 + \pi_2 = 20 \\
+      x_3 = 0 &\text{ or } 20\pi_1 + \pi_2 = 100 \\
+      x_4 = 0 &\text{ or } 30\pi_1 + \pi_2 = 90 \\
+      x_5 = 0 &\text{ or } 40\pi_1 + \pi_2 = 160 \\
+      \pi_1 = 0 &\text{ or } 5x_1 + 10x_2 + 20 x_3 + 30x_4 + 40x_5 = 60 \\
+      \pi_2 = 0 &\text{ or } x_1, x_2, x_3, x_4, x_5 = 1 \\
+    \end{align*}
   \end{problem}
 
   \begin{problem}{4}
