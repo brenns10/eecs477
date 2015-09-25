@@ -363,6 +363,98 @@
       \textbf{(d)} Find an optimal solution y* of the dual such that $(x*, y*)$
       satisfy complementary slackness. Show your work.\\
     \end{question}
+
+    \textbf{(a)} The following matrix $A$ corresponds to the above linear
+    program, after it is put in standard form.
+    \begin{equation*}
+      \begin{bmatrix*}
+        1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & -1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        -1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+        1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 \\
+      \end{bmatrix*}
+    \end{equation*}
+
+    In order to show that every BFS is integer, we must show that for every
+    submatrix $B$ of $A$ that is a basis of $R^9$, the determinant of $B$ is
+    either $-1$ or $1$.  However, it can be seen from the matrix above that the
+    top four rows are linearly dependent (the sum of the first three, minus the
+    fourth, is 0).  No matter which column you delete, they are still linearly
+    dependent, and thus there is no submatrix $B$ of $A$ that is a basis of
+    $R^9$.  So, it is trivially true that $A$ is unimodular, and therefore every
+    BFS to this linear program is integer.
+
+    \textbf{(b)} According to Octave, an optimal basic feasible solution is
+    $x^{*T} = (1, 0, 0, 1, 1)$, and the optimal value is 7.
+
+    \textbf{(c)} The dual is:
+
+    \begin{align*}
+      \max 2\pi_1 + \pi_2 - \pi_3 + 2\pi_4 - \pi5 - 2\pi_6 - \pi_7 - 3\pi_8 - 2\pi_9 &\\
+      \text{s.t. } \pi_1 - \pi_3 - \pi_5 &\le 1 \\
+      \pi_3 + \pi_4 - \pi_6 &\le 1 \\
+      \pi_1 - \pi_2 - \pi_7 &\le 3 \\
+      \pi_2 + \pi_4 - \pi_8 &\le 2 \\
+      \pi_1 + \pi_4 - \pi_9 &\le 4 \\
+      \pi_1, \pi_2, \pi_3, \pi_4 &\text{ unconstrained}\\
+      \pi_5, \pi_6, \pi_7, \pi_8, \pi_9 &\ge 0 \\
+    \end{align*}
+
+    The complementary slackness conditions are:
+
+    \begin{align*}
+      x_1 = 0 & \text{ or } \pi_1 - \pi_3 - \pi_5 = 1 \\
+      x_2 = 0 & \text{ or } \pi_3 + \pi_4 - \pi_6 = 1 \\
+      x_3 = 0 & \text{ or } \pi_1 - \pi_2 - \pi_7 = 3 \\
+      x_4 = 0 & \text{ or } \pi_2 + \pi_4 - \pi_8 = 2 \\
+      x_5 = 0 & \text{ or } \pi_1 + \pi_4 - \pi_9 = 4 \\
+      \pi_1 = 0 & \text{ or } x_1 + x_3 + x_5 = 2 \\
+      \pi_2 = 0 & \text{ or } x_4 - x_3 = 1 \\
+      \pi_3 = 0 & \text{ or } x_2 - x_1 = -1 \\
+      \pi_4 = 0 & \text{ or } x_2 + x_4 + x_5 = 2 \\
+      \pi_5 = 0 & \text{ or } x_1 = 1 \\
+      \pi_6 = 0 & \text{ or } x_2 = 2 \\
+      \pi_7 = 0 & \text{ or } x_3 = 1 \\
+      \pi_8 = 0 & \text{ or } x_4 = 3 \\
+      \pi_9 = 0 & \text{ or } x_5 = 2 \\
+    \end{align*}
+
+    \textbf{(d)} Putting $x^*$ into the complementary slackness conditions, we
+    have:
+
+    \begin{align*}
+      \pi_1 = 0 & \text{ or } 1 + 0 + 1 = 2 \\
+      \pi_2 = 0 & \text{ or } 1 - 0 = 1 \\
+      \pi_3 = 0 & \text{ or } 0 - 1 = -1 \\
+      \pi_4 = 0 & \text{ or } 0 + 1 + 1 = 2 \\
+      \pi_5 = 0 & \text{ or } 1 = 1 \\
+      \pi_6 = 0 & \text{ or } 0 = 2 \\
+      \pi_7 = 0 & \text{ or } 0 = 1 \\
+      \pi_8 = 0 & \text{ or } 1 = 3 \\
+      \pi_9 = 0 & \text{ or } 1 = 2 \\
+    \end{align*}
+
+    From this, we see that $\pi_6$, $\pi_7$, $\pi_8$, $\pi_9$ are all 0.
+    Putting this into the conditions for the nonzero $x$, we end up with the
+    system of equations:
+
+    \begin{align*}
+      \pi_1 - \pi_3 - \pi_5 &= 1 \\
+      \pi_2 + \pi_4 &= 2 \\
+      \pi_1 + \pi_4 &= 4 \\
+    \end{align*}
+
+    Since there are more variables than constraints, we may arbitrarily let
+    $\pi_1 = 1$ and $\pi_3 = 0$, making $\pi_5 = 0$, $\pi_4 = 3$, and so
+    $\pi_2 = -1$.  Therefore, we have a solution
+    $\pi^{*T} = (1, -1, 0, 3, 0, 0, 0, 0, 0)$ that satisfies complementary
+    slackness, and its objective value is $7$ (providing a good sanity check).
+    
   \end{problem}
 
   \begin{problem}{6}
