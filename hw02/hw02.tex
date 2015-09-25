@@ -5,6 +5,7 @@
 \assignment{Homework 2}
 \duedate{September 25, 2015}
 
+\usepackage{amsfonts}
 \usepackage{mathtools}
 \usepackage{multicol}
 %\usepackage{graphicx}
@@ -380,10 +381,13 @@
     variable, all of which is $\le c_{ij}$.  For the first set of constraints,
     the only time $x_{ij}$ has a nonzero coefficient is in the inequality
     associated with $\pi_{1i}$ where it gets a cefficient of $-1$.  For the
-    second and third sets of constraints, the only time $x_{ij}$ has a nonzero
-    coefficient is in the inequalities associated with $\pi_{2j}$ and $\pi_{3j}$
-    respectively, where they both have a coefficient of $1$.  Therefore, the
-    constraints will be $-\pi_{1i} + \pi_{2j} + \pi_{3j} \le c_{ij}$ for all
+    second set of constraints, the only time $x_{ij}$ has a nonzero coefficient
+    is in the inequalities associated with $\pi_{2j}$, where it has a
+    coefficient of $1$.  The only time $x_{ij}$ has a nonzero coefficient is in
+    the inequality associated with $\pi_{3j}$, but only if $i \le r$.  We will
+    use an indicator variable, $\mathbb{I}_{i\le r}$ to show this. Therefore,
+    the constraints will be
+    $-\pi_{1i} + \pi_{2j} + \mathbb{I}_{i\le r}\pi_{3j} \le c_{ij}$ for all
     pairs of $i$ and $j$.
 
     Putting all this together, the final representation of the dual is:
@@ -391,7 +395,7 @@
     \begin{align*}
       \max \sum_{i=1}^n -\pi_{1i} u_i + \sum_{j=1}^k \pi_{2j} r_j + \sum_{j=1}^k
     \pi_{3j} &\\
-      -\pi_{1i} + \pi_{2j} + \pi_{3j} &\le c_{ij} \:\: \forall i \in [1, n], j \in [1, k] \\
+      -\pi_{1i} + \pi_{2j} + \mathbb{I}_{i \le r}\pi_{3j} &\le c_{ij} \:\: \forall i \in [1, n], j \in [1, k] \\
       \pi_{1i} &\ge 0, \:\: \forall i \in [1, n] \\
       \pi_{2j} &\text{ unbounded } \forall j \in [1, k] \\
       \pi_{3j} &\ge 0, \:\: \forall j \in [1, k] \\
@@ -400,10 +404,10 @@
     The complementary slackness conditions are then laid out as follows:
 
     \begin{align*}
-      x_{ij} = 0 &\text{ or } -\pi_{1i} + \pi_{2j} + \pi_{3j} = c_{ij} \:\: \forall i \in [1,n], j \in [1, k] \\
+      x_{ij} = 0 &\text{ or } -\pi_{1i} + \pi_{2j} + \mathbb{I}_{i\le r}\pi_{3j} = c_{ij} \:\: \forall i \in [1,n], j \in [1, k] \\
       \pi_{1i} = 0 &\text{ or } \sum_{j=1}^k x_{ij} = u_{i} \:\: \forall i \in [1,n] \\
       \pi_{2j} = 0 &\text{ or } \sum_{i=1}^n x_{ij} = r_j \:\: \forall j \in [1,k] \\
-      \pi_{3j} = 0 &\text{ or } \sum_{i=1}^n x_{ij} = 1 \:\: \forall j \in [1,k]
+      \pi_{3j} = 0 &\text{ or } \sum_{i=1}^r x_{ij} = 1 \:\: \forall j \in [1,k]
     \end{align*}
   \end{problem}
 
