@@ -14,9 +14,9 @@
 
   \begin{problem}{1}
     \begin{question}
-      Consider the minimum cost network flow problem deﬁned on the following
+      Consider the minimum cost network flow problem defined on the following
       network $G=(V, E)$. The node set $V$ consists of the six nodes $a$, $b$,
-      $c$, $d$, $e$, and $f$. Each node has a capacity, which is deﬁned as the
+      $c$, $d$, $e$, and $f$. Each node has a capacity, which is defined as the
       maximum amount of flow that can cross that node. The nodes have supplies
       and capacities as per the following table:
 
@@ -69,6 +69,37 @@
         \hline
       \end{tabular}
     \end{question}
+
+    \begin{enumerate}[a.]
+    \item The first step should be to eliminate the capacities in the network.
+      This is done by splitting each node into an input node and an output node.
+      The input node contains all incoming arcs, and the output node has all the
+      outgoing arcs.  There is a link between them with 0 cost, 0 lower bound,
+      and the old capacity as the upper bound.  The input node has a demand of
+      0, and the output demand is the original.  This is the result of the first
+      step:
+
+      \includegraphics[width=0.7\textwidth]{problem1-step1.pdf}
+
+      Next, we remove lower bounds.  For each arc with a lower bound, we remove
+      the lower bound from the source's supply and add it to the destination's
+      supply.
+
+      \includegraphics[width=0.7\textwidth]{problem1-step2.pdf}
+
+      Note that here, $a_i$ can never be used.  To simplify, we eliminate it
+      during the final step.  In the final step, we eliminate upper bounds.  For
+      each arc with an upper bound, we replace it with a node which has a demand
+      opposite the upper bound.  The source and destination will both have an
+      arc into the new node.  The arc from the source will have the original
+      cost, while the arc from the destination to the new node will have cost
+      zero.  Finally, we increase the supply in the destination node by the old
+      upper bound.  Here is the final result:
+
+      \includegraphics[width=0.7\textwidth]{problem1-step3.pdf}
+    \end{enumerate}
+
+    
   \end{problem}
 
   \begin{problem}{2}
