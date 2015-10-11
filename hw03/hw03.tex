@@ -225,6 +225,74 @@
           potentials and list the reduced cost of each arc.
       \end{enumerate}
     \end{question}
+
+    \begin{enumerate}[a.]
+    \item The residual network is below:
+
+      \includegraphics{problem4.pdf}
+
+    \item Below are a set of node potentials:
+
+      \begin{tabular}{ll}
+        \hline
+        Node & $\pi_i$ \\
+        \hline
+        1 & 10 \\
+        2 & 11 \\
+        3 & 11 \\
+        4 & 8 \\
+        5 & 7 \\
+        6 & 5 \\
+        7 & 0 \\
+        8 & -9 \\
+        \hline
+      \end{tabular}
+
+      The corresponding reduced costs for each arc:
+
+      \begin{tabular}{llr}
+        \hline
+        Start & End & $c_{ij}^{\pi}$ \\
+        \hline
+        1 & 4 & $2-10+8=0$ \\
+        2 & 1 & $1-10+10=1$ \\
+        3 & 2 & $0-11+11=0$ \\
+        3 & 5 & $4-11+7=0$ \\
+        4 & 1 & $-2-8+10=0$ \\
+        4 & 3 & $-1-8+11=2$ \\
+        5 & 3 & $-4-7+11=0$ \\
+        5 & 6 & $2-7+5=0$ \\
+        5 & 7 & $7-7+0=0$ \\
+        6 & 2 & $-6-5+11=0$ \\
+        7 & 4 & $-5-0+8=3$ \\
+        7 & 5 & $-7-0+7=0$ \\
+        7 & 8 & $9-0-9=0$ \\
+        8 & 6 & $-8+9+5=6$ \\
+        \hline
+      \end{tabular}
+
+      All of the reduced costs are $\ge 0$, so this flow satisfies the reduced
+      cost optimality condition.
+
+    \item We know that $\alpha_{ij} = \max \{0, -c_{ij}^\pi\}$.  Since all of
+      the above $c_{ij}^\pi \ge 0$, we know
+      $\alpha_{ij} = 0 \:\: \forall (i,j) \in E$.  Therefore we see that all
+      complementary slackness conditions of the form
+      $\alpha_{ij}(u_{ij} - x_{ij}) = 0$ are immediately satisfied.  For the
+      complementary slackness conditions of the form
+      $x_{ij}(c_{ij}^\pi + \alpha_{ij}) = 0$, we have two possibilities:
+
+      \begin{enumerate}[i.]
+      \item $c_{ij}^\pi = 0$: for these arcs, we know
+        $c_{ij}^\pi + \alpha_{ij} = 0$ so the condition is satisfied.
+      \item $c_{ij}^\pi > 0$: for these arcs $c_{ij}^\pi + \alpha_{ij} > 0$, so
+        it must be true that $x_{ij} = 0$.  In the table above, we see that the
+        arcs corresponding to this case are: $(2,1)$, $(4,3)$, $(7,4)$, and
+        $(8,6)$.  We see that for all these arcs, $x_{ij} = 0$ in the original flow.
+      \end{enumerate}
+
+      So, both complementary slackness optimality conditions are satisfied.
+    \end{enumerate}
   \end{problem}
 
   \begin{problem}{5}
