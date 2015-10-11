@@ -322,7 +322,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="237.61303"
+     inkscape:cx="180.2916"
      inkscape:cy="910.82543"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -345,7 +345,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -426,7 +426,7 @@
            y="20.697218"
            x="119.24875"
            id="tspan4185-5"
-           sodipodi:role="line">12</tspan><tspan
+           sodipodi:role="line">15</tspan><tspan
            y="35.69722"
            x="119.24875"
            sodipodi:role="line"
@@ -544,7 +544,7 @@
            y="20.846977"
            x="35.050762"
            id="tspan4185-63"
-           sodipodi:role="line">3</tspan></text>
+           sodipodi:role="line">0</tspan></text>
     </g>
     <g
        id="g4277-7"
@@ -745,7 +745,7 @@
        inkscape:connection-end="#g4277" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5486)"
-       d="m 143.66433,36.669104 103.09019,0"
+       d="m 143.66802,36.678823 103.06049,0.05965"
        id="path4602"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -761,7 +761,7 @@
        inkscape:connection-end="#g4187-3" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 280.33417,36.681952 69.77873,0.05339"
+       d="m 280.35886,36.748205 69.74935,0"
        id="path4606"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -777,7 +777,7 @@
        inkscape:connection-end="#g4187-3" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5778)"
-       d="m 55.175093,153.25021 54.128987,0.0488"
+       d="m 55.169359,153.23507 54.158761,0"
        id="path4610"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -793,7 +793,7 @@
        inkscape:connection-end="#g4187-1-9" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5884)"
-       d="m 131.25338,176.71125 21.18945,96.49333"
+       d="m 131.2665,176.70736 21.17633,96.49722"
        id="path4616"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"

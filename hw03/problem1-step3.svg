@@ -562,7 +562,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="233.42681"
+     inkscape:cx="176.10538"
      inkscape:cy="914.66179"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -585,7 +585,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -629,7 +629,7 @@
            y="20.697218"
            x="119.24875"
            id="tspan4185-5"
-           sodipodi:role="line">12</tspan><tspan
+           sodipodi:role="line">15</tspan><tspan
            y="35.69722"
            x="119.24875"
            sodipodi:role="line"
@@ -746,7 +746,7 @@
            y="138.12723"
            x="23.932178"
            id="tspan4185-63"
-           sodipodi:role="line">28</tspan></text>
+           sodipodi:role="line">25</tspan></text>
     </g>
     <g
        id="g4277-7"
@@ -937,7 +937,7 @@
     </g>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5486)"
-       d="m 112.18282,36.025792 67.9164,-4.14887"
+       d="m 112.59803,37.039788 64.48901,0.052"
        id="path4602"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -986,7 +986,7 @@
            height="80"
            x="0"
            y="-12.637795" /></flowRegion><flowPara
-         id="flowPara8737"></flowPara></flowRoot>    <g
+         id="flowPara8737" /></flowRoot>    <g
        transform="translate(225.35714,0.35714288)"
        id="g4187">
       <g
@@ -1026,7 +1026,7 @@
     </g>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker9063)"
-       d="m 207.98383,32.22937 40.31158,3.421459"
+       d="m 210.70913,37.086514 36.99691,-0.04145"
        id="path9015"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -1034,7 +1034,7 @@
        inkscape:connection-end="#g4187" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker9507)"
-       d="m 350.63492,35.833397 -73.6663,-5.394201"
+       d="m 350.13777,37.026246 -68.84983,0"
        id="path9017"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -1100,7 +1100,7 @@
     </g>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker9353)"
-       d="M 349.00835,42.635434 182.75426,94.684333"
+       d="m 349.00835,42.635434 -166.25409,52.0489"
        id="path9053"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -1506,7 +1506,7 @@
        inkscape:connection-end="#g4277-0" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker12130)"
-       d="m 172.867,293.29705 30.14357,8.0943"
+       d="m 172.867,290.08277 30.14357,8.0943"
        id="path12110"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"

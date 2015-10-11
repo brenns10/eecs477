@@ -39,7 +39,7 @@
         \hline
         Arc & $c$ & $l$ & $u$ \\
         $(a,b)$ & 4 & 5 & $\infty$ \\
-        $(a,c)$ & 6 & 3 & $\infty$ \\
+        $(a,c)$ & 6 & 0 & $\infty$ \\
         $(b,c)$ & -2 & 0 & 25 \\
         $(b,e)$ & 5 & 0 & 10 \\
         $(c,d)$ & -3 & 5 & 10 \\
@@ -76,8 +76,10 @@
       The input node contains all incoming arcs, and the output node has all the
       outgoing arcs.  There is a link between them with 0 cost, 0 lower bound,
       and the old capacity as the upper bound.  The input node has a demand of
-      0, and the output demand is the original.  This is the result of the first
-      step:
+      0, and the output demand is the original.  Below is the result of this
+      first step.  Arcs are labeled $c, l, u$ and nodes are labeled with their
+      supplies.  Nodes have been renamed with subscript $i$ for input and
+      subscript $o$ for output.
 
       \includegraphics[width=0.7\textwidth]{problem1-step1.pdf}
 
@@ -94,9 +96,22 @@
       arc into the new node.  The arc from the source will have the original
       cost, while the arc from the destination to the new node will have cost
       zero.  Finally, we increase the supply in the destination node by the old
-      upper bound.  Here is the final result:
+      upper bound.  Below is the final result.  Nodes inserted between an
+      input and output node are labeled with a subscript $m$ for "middle".
+      Nodes inserted along an original node are named $ab$, where $a$ is the
+      original source of the arc and $b$ is the original destination.
 
       \includegraphics[width=0.7\textwidth]{problem1-step3.pdf}
+
+    \item The flow is drawn below on the original network:
+
+      \includegraphics[width=0.5\textwidth]{problem1-partb.pdf}
+
+      Each link is within the upper and lower bounds, and each node has net
+      supply of 0.  The flow through $b$ is 20, the flow through $c$ is 25, and
+      the flow through $d$ is 10.  So, this flow is feasible.  The residual is:
+
+      \includegraphics[width=0.5\textwidth]{problem1-partb-resid.pdf}
     \end{enumerate}
 
     
