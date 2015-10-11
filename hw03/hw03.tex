@@ -309,14 +309,51 @@
       \item Show an arrangement of gambling chips where Alice would lose if she
         always picked the end-of-line chip with the largest possible value.
       \item Design an algorithm that takes as input a linear arrangement of
-        chips and that returns Alice’s best strategy assuming that Bob will make
+        chips and that returns Alice's best strategy assuming that Bob will make
         the most of the remaining chip arrangement. Your algorithm should
         formulate the game as a shortest path problem.  
       \item Determine the running time of your algorithm assuming that shortest
-        paths are computed with Dijkstra’s algorithm. Suggest an improvement to
+        paths are computed with Dijkstra's algorithm. Suggest an improvement to
         the shortest path computation that results in a faster run time.
       \end{enumerate}
     \end{question}
+
+    \begin{enumerate}[a.]
+    \item One such arrangement of chips would be:
+      $1, 6, 7, 5, 8, 4, 9, 3, 10, 2$.  Assuming Alice goes first, her total
+      would be $2 + 3 + 4 + 5 + 1 = 15$, while Bob would have
+      $10 + 9 + 8 + 7 + 1 = 35$.
+    \item If we define the objective function as the difference between your
+      score and your opponent's score, then the best strategy when given a
+      sequence $A$ of chip values and starting and ending point $i$ and $j$
+      respectively can be defined recursively:
+
+      \begin{equation*}
+        Strategy(A,i,j) = \max \{A[i] - Strategy(A,i+1,j), A[j] - Strategy(A,i,j+1)\}
+      \end{equation*}
+
+      The base case, of course, is when $i=j$, at which point
+      $Strategy(A,i,i)=A[i]$.  We can then create a graph out of this, where
+      there is a node $(i,j)$ if $i <= j$.  For each node $(i,j)$, there is an
+      edge connecting it to $(i-1, j)$ and $(i,j-1)$, having a cost with
+      magnitude of $A[i]$ and $A[j]$ respectively.  The sign of the cost is
+      determined by whether $i + (n-j)$ is even, where $n$ is the number of
+      chips in the sequence.  If $i+(n-j)$ is even, the sign is negative,
+      otherwise, positive.  The shortest path from node $(0,n)$ to any end node
+      $(i,i)$ is Alice's strategy.
+
+      So, the algorithm is simply to construct this graph and find the above
+      shortest path.
+
+    \item We cannot use Dijkstra's Algorithm because of the negative weight
+      edges in the graph.  If we added a suitable constant to every edge, the
+      weights would be non-negative and therefore we could apply Dijkstra's
+      Algorithm.  This would give us a runtime of $O(n^2 + n^2 \log{n^2})$
+      (where $n$ is the number of chips).  We would be better off simply filling
+      out a table of the above strategy function instead of using a search
+      algorithm.  This would improve our runtime to $O(n^2)$.
+      
+    \end{enumerate}
   \end{problem}
 
   \begin{problem}{7}
