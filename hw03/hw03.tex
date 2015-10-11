@@ -107,6 +107,27 @@
       Give an example of a minimum cost network flow problem in which there is
       an optimal solution that is fractional.
     \end{question}
+
+    Since minimum cost network flow is unimodular, there are two ways that a
+    fractional solution could exist:
+
+    \begin{enumerate}
+    \item The demands are all integer, so there must be an integer optimal
+      solution.  However, there could also be a fractional solution that is ``in
+      between'' two integer solutions.  Here is an example of such a problem:
+
+      \includegraphics[width=0.4\textwidth]{problem2-eg1.pdf}
+
+      In this example, the fractional solution is to send half a unit through
+      $b$, and half a unit through $c$.  This solution can be thought of as ``in
+      between'' the two integer solutions (sending all the flow through $b$ or
+      through $c$).
+
+    \item The demands are fractional, so there is no integer optimal solution.
+      Here is an example of such a problem:
+
+      \includegraphics[width=0.3\textwidth]{problem2-eg2.pdf}
+    \end{enumerate}
   \end{problem}
 
   \begin{problem}{3}
