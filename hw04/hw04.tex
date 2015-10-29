@@ -46,6 +46,43 @@
       Suggest a method using maximum flows to identify the minimum number of
       nurses required to satisfy all the constraints.
     \end{question}
+
+    For the purposes of notation, let $D(i)$ and $S(j)$ be the minimum numbers
+    of nurses for department $i$ or shift $j$ respectively.  Let $MinDS(i,j)$
+    and $MaxDS(i,j)$ be the minimum and maximum required amount of nurses for
+    the pair of department $i$ and shift $j$.
+
+    For intuition of this problem, we start by assuming that each pair of
+    department and shift are given the maximum number of nurses.  The total flow
+    will be the number of nurses we can remove while still satisfying each
+    constraint.  To this end, we define nodes in a similar fashion to the matrix
+    rounding problem presented in class.  For each pair of department $i$ and
+    shift $j$, we create a node $a_{ij}$.  For each department $i$ we create a
+    node $d_i$, and for each shift $j$ we create a node $s_j$.  Then, we create
+    a source node $s$ and a sink node $t$.
+
+    We create edges from $s$ to each $s_j$.  The lower bounds of these nodes
+    will be 0, and the upper bounds will be the number of nurses we could remove
+    in total from that shift.  This can be expressed as
+    $\left(\sum_i MaxDS(i,j)\right) - S(j)$.  These upper bounds satisfy the
+    constraints in (a).
+
+    Next, for each pair $(i,j)$, we create an edge from $s_j$ to $a_{ij}$, and
+    from $a_{ij}$ to $d_i$.  These edges will both have lower bound of 0, and
+    upper bound $MaxDS(i,j) - MinDS(i,j)$.  These edges represent the number of
+    nurses we could remove from each (department, shift) pairing, while still
+    satisfying the constraints in (c).
+
+    Finally, we create an edge from each $d_i$ to $t$.  These will have a lower
+    bound of 0 and an upper bound of $\left(\sum_j MaxDS(i,j)\right) - D(i)$.
+    These edges represent the number of nurses we could remove from each shift
+    while satisfying the constraints in (b).
+
+    The maximum flow solution will determine the maximum number of nurses that
+    can be removed from the schedule in total.  In order to recover the amount
+    of nurses assigned to each (department, shift) pairing, we simply need to
+    translate from ``number of nurses removed'' to number of nurses assigned.
+    This can be achieved by $MaxDS(i,j) -$ flow through $a_{ij}$.
   \end{problem}
 
   \begin{problem}{2}
