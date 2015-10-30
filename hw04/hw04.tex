@@ -5,6 +5,7 @@
 \assignment{Homework 4}
 \duedate{October 30, 2015}
 
+\usepackage{algpseudocode}
 \usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{enumerate}
@@ -170,14 +171,55 @@
   \begin{problem}{3}
     \begin{question}
       Let $G=(V, E)$ be a directed graph with lengths $w(e)$ associated to each
-      arc $e\ in E$, and let $s \in V$ be a vertex. Recall that
+      arc $e \in E$, and let $s \in V$ be a vertex. Recall that
       $d(v) \le d(u) + w(u,v)$ for $(u,v) \in E$ by linear programming duality,
       where $d(u)$ is the distance of $u \in V$ from $s$. Show that the
-      following invariant holds during the execution of Dijkstra’s algorithm: if
+      following invariant holds during the execution of Dijkstra's algorithm: if
       $S$ is the set of permanently labeled nodes and $d(u)$ is the current
       label of vertex $u$, then $d(v) \le d(u) + w(u,v)$ for $(u,v) \in E$,
       $u \in S$, $v \not\in S$.
     \end{question}
+
+    Consider the following definition of Dijkstra's algorithm, from CLRS:
+
+    \begin{algorithmic}
+      \Function{Dijkstra}{$G, w, s$}
+        \State $S \gets \emptyset$
+        \State $Q \gets G.V$
+        \While{$Q \ne \emptyset$}
+          \State $u \gets$ Extract-Min$(Q)$
+          \State $S \gets S \cup \{u\}$
+          \For{$v\in G.V: \:\: (u,v) \in G.E$}
+            \If{$d(v) > d(u) + w(u,v)$}
+              \State $d(v) \gets d(u) + w(u,v)$
+              \State $v.\pi \gets u$  \Comment{ records the predecessor node}
+            \EndIf
+          \EndFor
+        \EndWhile
+      \EndFunction
+    \end{algorithmic}
+
+    \begin{itemize}
+    \item \textbf{Initialization:} Since $S$ is initialized to $\emptyset$, the
+      condition is vacuously true on initialization of the loop.
+    \item \textbf{Maintenance:} Assume that the invariant is true at the
+      beginning of the while loop.  Each iteration of the outer loop, a node $u$
+      is selected from $V \setminus S$ and added to $S$.  We must first show
+      that the invariant is true for $u$ and all $v\in V\setminus S$ at the end
+      of the loop.  If the invariant were false for any $v$ before the for loop,
+      then the inner if statement would have assigned
+      $d(v) \gets d(u) + w(u,v)$, thus satisfying the invariant.  So, the
+      invariant must be true between $u$ and all $v \in V \setminus S$.
+
+      We must also show that the condition has not been violated for any $t$
+      that was in $S$ at the beginning of the loop.  Since $d(v)$ was only
+      decreased for $v \in V \setminus S$, the condition could not have been
+      violated during the execution of the loop.  Thus, the invariant is
+      maintained.
+    \end{itemize}
+
+    (No termination step is necessary, since we only are proving that the
+    invariant holds, not that a property results due to the invariant.)
   \end{problem}
 
   \begin{problem}{5}
