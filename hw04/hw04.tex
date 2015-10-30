@@ -104,11 +104,10 @@
     rest of the contractors ($z_j$).  Each $w_J$ will have supply $-1$, and each
     $z_j$ will have supply $1-r_j$.
 
-    Since there is no guarantee that the total number of contractors is
-    guaranteed to be equal to the total number of required contractors (only
-    that there are at least that much, for the problem to be feasible), we must
-    create a slack node $s$ with demand of $\sum_{i=1}^n u_i$ -
-    $\sum_{j=1}^k r_j$.
+    Since there is no guarantee that the total number of contractors is equal to
+    the total number of required contractors (only that there are at least that
+    much, for the problem to be feasible), we must create a slack node $s$ with
+    demand of $\sum_{i=1}^n u_i$ - $\sum_{j=1}^k r_j$.
 
     For each contractor $i$, there will be two types of edges:
     
@@ -142,9 +141,30 @@
 
     The dual can therefore be mechanically produced:
 
-    \begin{alignat*}{1}
-      \max \sum_{i=1}^n \pi_i u_i + \sum_{j=1}^k (r_j-1) \lambda_j + \sum_{j=1}^k \gamma_j + \eta
+    \begin{alignat*}{5}
+      \max \sum_{i=1}^n \pi_i u_i + \sum_{j=1}^k (r_j-1) \lambda_j + \sum_{j=1}^k \gamma_j + &\eta \left(\sum_{i=1}^n u_i - \sum_{j=1}^k r_i\right), \text{ s.t.} \\
+      \pi_i + \eta &\le 0, && \:\: 1 \le i \le n, \:\: && (t_i) \\
+      \pi_i + \lambda_j &\le c_{ij} && \:\: \forall i,j, \:\: && (x_{ij}) \\
+      \pi_i + \gamma_j &\le c_{ij} && \:\: 1 \le i \le r, \forall j, \:\: && (y_{ij}) \\
+      \pi_i, \lambda_j, \gamma_j, \eta &\text{ unconstrained}
     \end{alignat*}
+
+    The complementary slackness conditions:
+
+    \begin{align*}
+      t_i(\pi_i + \eta) &= 0 \\
+      x_{ij} (c_{ij} - \pi_i - \lambda_j) &= 0 \\
+      y_{ij} (c_{ij} - \pi_i - \gamma_j) &= 0 \\
+    \end{align*}
+
+    I could continue listing the corresponding ones from the primal, but since
+    all constraints are equality in the primal, they are trivially true and not
+    particularly interesting.
+
+    To prove that the solutions to this problem are linear, it is suffucient to
+    note that MCNF is a unimodular problem, and since the $b_i$ values (i.e.,
+    $u_i$ and $r_j$) must all be integers, all solutions to the contractor
+    problem must be integer
   \end{problem}
 
   \begin{problem}{3}
