@@ -231,6 +231,37 @@
 
       \includegraphics[width=0.6\textwidth]{p5-fig.png}
     \end{question}
+
+    We start with the original residual, with $\pi=x=0$.  Note that in all
+    diagrams, arcs are labeled by $(c_{ij}^\pi, u_{ij})$.
+
+    \includegraphics{p5-00-initial.pdf}
+
+    Next, we update the values of $\pi$ and $c_{ij}^\pi$, and find the shortest
+    path.
+
+    \includegraphics{p5-01-update-pi.pdf}
+
+    Now, we augment by sending one unit of flow from 1 to 2 to 5 to 8:
+
+    \includegraphics{p5-02-augment.pdf}
+
+    Again, we update the values of $\pi$ and $c_{ij}^\pi$, and find the shortest
+    path.
+
+    \includegraphics{p5-03-update-pi.pdf}
+
+    Next, we augment by sending three units of flow from 1 to 3 to 7 to 8.
+
+    \includegraphics{p5-04-augment.pdf}
+
+    Again, update $\pi$ and $c_{ij}^\pi$, and find the shortest path:
+
+    \includegraphics{p5-05-update-pi.pdf}
+
+    Unfortunately, from here we have negative edge weights, meaning I probably
+    have done something wrong.  Especially considering that the last
+    augmentation sent 3 units of flow instead of 1.
   \end{problem}
 
   \begin{problem}{7}
