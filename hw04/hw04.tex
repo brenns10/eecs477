@@ -5,7 +5,7 @@
 \assignment{Homework 4}
 \duedate{October 30, 2015}
 
-%\usepackage{mathtools}
+\usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{enumerate}
 
@@ -92,6 +92,59 @@
       slackness conditions, and prove that this problem has always an integer
       optimal solution.
     \end{question}
+
+    As in previous assignments, I will use the notation that there are $n$
+    contractors, the first $r$ of which are experienced.  Additionally, there
+    will be $k$ locations.
+
+    In the minimum cost network flow formulation of this problem, there will be
+    a node for each contractor ($v_1, v_2, \dots, v_n$).  Each node $v_i$ will
+    have supply $u_i$.  Furthermore, there will be two nodes for each location
+    $j$---one for the required experienced contractor ($w_j$) and one for the
+    rest of the contractors ($z_j$).  Each $w_J$ will have supply $-1$, and each
+    $z_j$ will have supply $1-r_j$.
+
+    Since there is no guarantee that the total number of contractors is
+    guaranteed to be equal to the total number of required contractors (only
+    that there are at least that much, for the problem to be feasible), we must
+    create a slack node $s$ with demand of $\sum_{i=1}^n u_i$ -
+    $\sum_{j=1}^k r_j$.
+
+    For each contractor $i$, there will be two types of edges:
+    
+    \begin{itemize}
+    \item $(v_i, z_j)$, also with cost $c_{ij}$, $\forall j$.  The flow across
+      these arcs will be labeled $x_{ij}$.
+    \item $(v_i, s)$, with cost zero.  The flow across these arcs will be
+      labeled $t_i$.
+    \end{itemize}
+
+    For experienced contractors $i \in [r+1,n]$, there will be an additional
+    edge $(v_i, w_j)$, with cost $c_{ij}$, $\forall j$.  The flow across these
+    arcs will be labeled $y_{ij}$.
+
+    All edges in the network have 0 lower bound and $\infty$ upper bound.  This
+    problem can therefore be expressed with the linear program:
+
+    \begin{alignat*}{5}
+      \min \sum_{i=1}^n \sum_{j=1}^k c_{ij} x_{ij} + \sum_{i=1}^r \sum_{j=1}^k c_{ij} y_{ij} & \text{ s.t.} \\
+      t_i + \sum_{j=1}^k (x_{ij} + y_{ij}) &= u_i, && 1 \le i \le r && (\pi_i)\\
+      t_i + \sum_{j=1}^k x_{ij} &= u_i,   &&r+1 \le i \le n \:\:  && (\pi_i)\\
+      \sum_{i=1}^n x_{ij} &= r_j - 1,  && 1 \le j \le k && (\lambda_j)\\
+      \sum_{i=1}^r y_{ij} &= 1, && 1 \le j \le k && (\gamma_j)\\
+      \sum_{i=1}^n t_i &= \sum_{i=1}^n u_i - \sum_{j=1}^k r_i  && && (\eta)\\
+      t_i, x_{ij}, y_{ij} &\ge 0  &&\\
+    \end{alignat*}
+
+    Since there are no arc upper bounds, there are no $\alpha_{ij}$ variables.
+    I've given each type of node's mass balance constraint its own variable
+    letter, instead of trying to decipher them using some subscript notation.
+
+    The dual can therefore be mechanically produced:
+
+    \begin{alignat*}{1}
+      \max \sum_{i=1}^n \pi_i u_i + \sum_{j=1}^k (r_j-1) \lambda_j + \sum_{j=1}^k \gamma_j + \eta
+    \end{alignat*}
   \end{problem}
 
   \begin{problem}{3}
