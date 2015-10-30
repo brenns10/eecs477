@@ -283,6 +283,27 @@
       costs and that all arcs in the shortest path from node $k$ to node $v$
       have zero reduced cost. Use the statement of problem 3.
     \end{question}
+
+    Consider any arc $(i,j)$ on the shortest path from $k$ to $v$.  We know that
+    $d(j) = d(i) + c_{ij}^\pi $.  The new reduced cost of this arc is
+    $c_{ij}'^\pi = c_{ij} - \pi(i) + d(i) + \pi(j) - d(j) = c_{ij}^\pi + d(i) -
+    (d(i) + c_{ij}^\pi) = 0$.
+
+    Consider any arc $(i,j)$ in the residual.  In all cases we have that
+    $d(j) \le d(i) + c_{ij}^\pi$.  There are three cases for this arc:
+
+    \begin{enumerate}[1.]
+    \item Both $i$ and $j$ were permanently labeled.  So,
+      $c_{ij}'^\pi = c_{ij} - \pi(i) + d(i) + \pi(j) - d(j) = c_{ij}^\pi + d(i)
+      - d(j) \ge 0$.
+    \item Neither $i$ nor $j$ were permanently labeled.  So,
+      $c_{ij}'^\pi = c_{ij} - \pi(i) + d(v) + \pi(j) - d(v) = c_{ij}^\pi \ge 0$.
+    \item $i$ was permanently labeled, but $j$ was not. So,
+      $c_{ij}'^\pi = c_{ij} - \pi(i) + d(i) + \pi(j) - d(v) = c_{ij}^\pi + d(i)
+      - d(v)$.
+      Since $v$ was permanently labeled and $j$ was not, $d(v) \le d(j)$, so
+      $c_{ij}'^\pi \ge c_{ij} + d(i) - d(v) \ge 0$.
+    \end{enumerate}
   \end{problem}
 
 \end{document}
