@@ -1,0 +1,66 @@
+\documentclass[fleqn]{homework}
+
+\student{Stephen Brennan (smb196)}
+\course{EECS 477}
+\assignment{Homework 5}
+\duedate{November 23, 2015}
+
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumerate}
+
+\begin{document}
+  \maketitle
+
+  \begin{problem}{1}
+    \begin{question}
+      Apply the capacity-scaling algorithm to the minimum cost flow problem in
+      the figure.
+
+      \includegraphics[width=0.6\textwidth]{p1.png}
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{2}
+    \begin{question}
+      In this problem, you will revisit the gambling chip game.  Assume that
+      there are four chips of value 6, 5, 2, 7, and thus the game ends in two
+      rounds.
+
+      \begin{enumerate}[a.]
+      \item Write the game in extensive form, and then convert the extensive
+        form into strategic form.
+      \item Model the strategic form game as a linear program and find the
+        optimal mixed strategies for the two players.
+      \item Assume that Bob uses his optimal mixed strategy.  Describe a
+        deterministic strategy that Alice can use to maximize her winnings.
+      \item Find an arrangement of at least two rounds for which the optimal
+        strategy is deterministic for both players.
+      \end{enumerate}
+    \end{question}
+  \end{problem}
+
+  \begin{problem}{3}
+    \begin{question}
+      Consider a data structure implemented as a linked list containing $n$
+      distinct items.  The data structure supports the operation
+      \texttt{CONTAINS(item)}, which returns true if the list contains the given
+      item and false otherwise.  A \texttt{CONTAINS(item)} takes time
+      proportional to $O(p)$, where $p$ is the position of the item in the
+      list.  Furthermore, once \texttt{CONTAINS(item)} has located the item, it
+      can move it forward to any position between the first and the $p$th within
+      the $O(p)$ time bound.  In this way, if the same item is being requested
+      repeatedly, subsequent \texttt{CONTAINS(item)} will take less time.
+      Consider an algorithm for determining whether to move the item forward and
+      to which location.
+
+      \begin{enumerate}[a.]
+      \item Show that $p \ge n$ in the worst-case for any deterministic
+        algorithm.
+      \item Use Yao's principle to show that $p \ge (n+1) / 2$ in the worst case
+        for any randomized algorithm.
+      \end{enumerate}
+    \end{question}
+  \end{problem}
+
+\end{document}
