@@ -61,6 +61,50 @@
         for any randomized algorithm.
       \end{enumerate}
     \end{question}
+
+    This situation can be represented as a two person zero-sum game, where the
+    payoff is the the runtime of the algorithm.  The two players are $A$, the
+    algorithm, and $I$, the input.  $A$ tries to minimize the runtime, and $I$
+    tries to maximize it.
+
+    \begin{enumerate}[a.]
+    \item A deterministic algorithm means that $A$ is using a pure strategy
+      (such as ``always move the element to the front'' or ``always move the
+      element to $\lfloor p/2 \rfloor$'', etc).  In this case, there is always a
+      deterministic strategy that calls \texttt{CONTAINS} on the last item in
+      the list each time.  This makes the worst-case payoff $n$ for any
+      deterministic strategy of $A$.
+    \item For the purpose of this question, we will define the game as a series
+      of $n$ rounds ($n$ calls and $n$ executions of the algorithm).  In order
+      to determine what the worst-case $p$ would be if $A$ used a randomized
+      strategy, we look at the worst-case payoff for this game.  If we think of
+      $x$ and $i$ as mixed and pure strategies for $I$ (maximizing player), and
+      $y$ and $j$ as mixed and pure strategies for $A$ (minimizing player), then
+      the worst-case payoff for the algorithm is:
+
+      \begin{equation*}
+        \min_y \max_i H(i,y)
+      \end{equation*}
+
+      According to Yao's principle, this follows the inequality:
+
+      \begin{equation*}
+        \min_y \max_i H(i,y) \ge \min_j H(x,j) \forall x
+      \end{equation*}
+
+      Consider the following mixed strategy $x$: select any ordering of items 1
+      through $n$, and call \texttt{CONTAINS} on each one in order.  In this
+      case, the optimal strategy $j$ is not to move any element forward in the
+      list, because the input will never call \texttt{CONTAINS} on that element
+      again.  The payoff of this strategy is:
+
+      \begin{equation*}
+        \min_j H(x, j) = \sum_{k=1}^n k = \frac{n(n+1)}{2}
+      \end{equation*}
+
+      Since this is over a ``game'' of $n$ calls, the worst-case runtime $p$ for
+      a single call to the algorithm is $p \ge \frac{n+1}{2}$.
+    \end{enumerate}
   \end{problem}
 
 \end{document}
