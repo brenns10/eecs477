@@ -8,6 +8,7 @@
 \usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{enumerate}
+\usepackage{booktabs}
 
 \begin{document}
   \maketitle
@@ -38,6 +39,97 @@
         strategy is deterministic for both players.
       \end{enumerate}
     \end{question}
+
+    \begin{enumerate}[a.]
+    \item Below is the extensive form of the game.  The nodes are game states,
+      and at each level the left branch represents the player picking up the
+      left chip.  Alice moves first, then Bob, then Alice again.  Bob's final
+      move is not shown explicitly since he has no choice.  Below each leaf are
+      the payoffs of (Alice, Bob).
+
+      \includegraphics[width=0.6\textwidth]{p2_extensive.pdf}
+
+      In strategic form, we have:
+
+      \begin{align*}
+        S^A &= \{(L; L, L), (L; L, R), (L; R, L), (L; R, R), 
+                 (R; L, L), (R; L, R), (R; R, L), (R; R, R)\} \\
+        S^B &= \{(L, L), (L, R), (R, L), (R, R)\} \\
+      \end{align*}
+
+      \begin{itemize}
+      \item For Alice, a strategy $(x; y, z)$ represents the following: ``play
+        $x$, then if Bob played L, play $y$.  Otherwise, play $z$''.
+      \item For Bob, a strategy $(x, y)$ represents: ``if Alice played L, play
+        $x$.  Otherwise, play $y$''.
+      \end{itemize}
+
+      In order to make this a zero sum game, we will define Alice's payoff as
+      her score minus Bob's.  Thus, we can define this table of $H(i,j)$ (which
+      we'll need for part b):
+
+      \begin{tabular}{lllll}
+        \toprule
+        Alice's Strategy & \multicolumn{4}{c}{Bob's Strategy} \\
+        \midrule
+        & (L, L) & (L, R) & (R, L) & (R, R) \\
+        (L; L, L) & $8-12=-4$ & $8-12=-4$ & $11-9=2$  & $11-9=2$  \\
+        (L; L, R) & $8-12=-4$ & $8-12=-4$ & $8-12=-4$ & $8-12=-4$ \\
+        (L; R, L) & $13-7=6$  & $13-7=6$  & $11-9=2$  & $11-9=2$  \\
+        (L; R, R) & $13-7=6$  & $13-7=6$  & $8-12=-4$ & $8-12=-4$ \\
+        (R; L, L) & $12-8=4$  & $13-7=6$  & $12-8=4$  & $13-7=6$  \\
+        (R; L, R) & $12-8=4$  & $12-8=4$  & $12-8=4$  & $12-8=4$  \\
+        (R; R, L) & $9-11=-2$ & $13-7=6$  & $9-11=-2$ & $13-7=6$  \\
+        (R; R, R) & $9-11=-2$ & $12-8=4$  & $9-11=-2$ & $12-8=4$  \\
+        \bottomrule
+      \end{tabular}
+
+    \item In this part, we will refer to the pure strategies of Alice and Bob
+      indexed in the order they were presented in part a.  The linear program
+      for determining a mixed strategy that maximizes Alice's worst case payoff
+      on any of Bob's pure strategies is below:
+
+      \begin{align*}
+        \max v &\text{ s.t.} \\
+        v + 4x_1 + 4x_2 - 6x_3 - 6x_4 - 4x_5 - 4x_6 + 2x_7 + 2x_8 &\le 0 \\
+        v + 4x_1 + 4x_2 - 6x_3 - 6x_4 - 6x_5 - 4x_6 - 6x_7 - 4x_8 &\le 0 \\
+        v - 2x_1 + 4x_2 - 2x_3 + 4x_4 - 4x_5 - 4x_6 + 2x_7 + 2x_8 &\le 0 \\
+        v - 2x_1 + 4x_2 - 2x_3 + 4x_4 - 6x_5 - 4x_6 - 6x_7 - 4x_8 &\le 0 \\
+        x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8 &= 1 \\
+        x_i &\ge 0, \:\:\:\: i \in [1, 8] \\
+      \end{align*}
+
+      The linear program for determining a mixed strategy that maximizes Bob's
+      worst case payoff on any of Alice's pure strategies is just the dual of
+      the one above, but I will write it below anyway:
+
+      \begin{align*}
+        \min w &\text{ s.t.} \\
+        w + 4y_1 + 4y_2 - 2y_3 - 2y_4 &\ge 0 \\
+        w + 4y_1 + 4y_2 + 4y_3 + 4y_4 &\ge 0 \\
+        w - 6y_1 - 6y_2 - 2y_3 - 2y_4 &\ge 0 \\
+        w - 6y_1 - 6y_2 + 4y_3 + 4y_4 &\ge 0 \\
+        w - 4y_1 - 6y_2 - 4y_3 - 6y_4 &\ge 0 \\
+        w - 4y_1 - 4y_2 - 4y_3 - 4y_4 &\ge 0 \\
+        w + 2y_1 - 6y_2 + 2y_3 - 6y_4 &\ge 0 \\
+        w + 2y_1 - 4y_2 + 2y_3 - 4y_4 &\ge 0 \\
+        y_1 + y_2 + y_3 + y_4 &= 1 \\
+        y_j &\ge 0, \:\:\:\: j \in [1, 4]
+      \end{align*}
+
+      The linear program for Alice is solved in \texttt{p2b\_alice.m}.  Since
+      Octave outputs the solution to the dual along with the primal (it is
+      called lambda in the output), that is all that is necessary.  Alice's,
+      optimal mixed strategy is $\vec{x}^* = (0, 0, 0, 0, 1, 0, 0, 0)$, and
+      Bob's optimal mixed strategy is $\vec{y}^* = (0, 0, 1, 0)$.  These achieve
+      $v^* = w^* = 4$.  Interestingly, this means that both Alice and Bob's best
+      mixed strategies are actually pure strategies: (R; L, R) and (R, L)
+      respectively.
+
+    \item Alice may simply use her optimal ``mixed'' strategy found in part b,
+      which is the pure strategy (R; L, R).
+    \item The given arrangement of chips (6, 5, 2, 7) is such an example.
+    \end{enumerate}
   \end{problem}
 
   \begin{problem}{3}
