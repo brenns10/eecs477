@@ -231,6 +231,61 @@
       \item A potential function
       \end{enumerate}
     \end{question}
+
+    \begin{enumerate}[a.]
+    \item For simplicity, assume $n$ itself is a power of 2.  Then, there are
+      $\log n + 1$ operations $i$ which are powers of 2, and $n - \log n - 1$
+      operations which are not.  So, the total cost of the operations that are
+      not powers of two is $n - \log n - 1$.  The total cost of the operations
+      that are powers of 2 is equal to
+      $\sum_{i=0}^{\log n} 2^i = 2^{\log n + 1} - 1$.  Therefore, the overall
+      total cost of the operations on the data structure is:
+
+      \begin{align*}
+        \text{total cost} = n - \log n - 1 + 2n - 1 = 3n - \log n - 2
+      \end{align*}
+
+      Therefore the amortized cost of each operation (when there are a total of
+      $n$ operations, and $n$ is a power of 2) is:
+
+      \begin{align*}
+        \text{amortized cost} = 3 - \frac{\log n}{n} - \frac{2}{n}
+      \end{align*}
+
+      Note that as $n$ grows, the amortized cost approaches 3.  Furthermore,
+      when $n$ is not a power of two, the total cost is lower than what is
+      calculated above.  Therefore, we can always say that the amortized cost of
+      any operation on this data structure is less than or equal to 3.
+    \item In the accounting method, each operation $i$ will have cost 1, and
+      will ``account'' for a share of the cost of the very next power of 2.
+      More explicitly:
+      \begin{itemize}
+      \item When $i$ is not a power of 2, the operation will have a cost of 1,
+        and the operation will ``leave a candy'' of value $2 - \frac{2}{x}$,
+        where $x = \lceil \log i \rceil$.  Its total cost is $3 - \frac{2}{x}$.
+      \item When $i$ is a power of 2, the operation will have cost $i$, but it
+        will be able to ``eat'' the candy left by the operations between the
+        previous power of 2 and the current one.  There are $\frac{i}{2} - 1$
+        operations between, and each one left $2 - \frac{2}{i}$ candy, so this
+        operation eats
+        $\left(\frac{i}{2} - 1\right)\left(2 - \frac{2}{i}\right) = i - 3 +
+        \frac{2}{i}$
+        candy.  This leaves a total cost of this operation that is
+        $i - i + 3 - \frac{2}{i} = 3 - \frac{2}{i}$.
+      \end{itemize}
+
+      Again we see that both types of operations have amortized cost bounded by
+      3, just as we saw above.
+    \item In the potential method, we will have pretty much the exact same
+      formulation as the accounting method.  The potential function is
+      $\Phi(D_i) =$ the amount of candy saved up after operation $i$.  So,
+      $\Phi(D_i) = 0$ for each $i$ which is a power of 2, and
+      $\Phi(D_i) = \Phi(D_{i-1}) + 2 - \frac{2}{\lceil \log i \rceil}$ for $i$
+      which are not.  Therefore, the amortized cost of each operation $i$ is
+      simply $\hat{c}_i = 3 - \frac{2}{\lceil \log i\rceil}$ (as we saw
+      previously), and this is bounded by 3, which is again what we've seen all
+      along.
+    \end{enumerate}
   \end{problem}
 
   \begin{problem}{6}
