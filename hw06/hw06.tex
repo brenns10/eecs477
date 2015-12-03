@@ -5,6 +5,7 @@
 \assignment{Homework 6}
 \duedate{December 4, 2015}
 
+\usepackage{algpseudocode}
 \usepackage{enumerate}
 \usepackage{mathtools}
 %\usepackage{graphicx}
@@ -30,7 +31,7 @@
       he needs $t$ out of the $k$ available tests with the property that any two
       of the $n$ substances differ on at least one of the $t$ test outcomes.
       \begin{enumerate}[a.]
-      \item Argue that the manufacturer needs at least $t=\Omega(log n)$ tests
+      \item Argue that the manufacturer needs at least $t=\Omega(\log n)$ tests
         to differentiate the $n$ substances from each other.
       \item Model the manufacturer's problem as an integer linear program.
       \item Use the program to devise a pimal-dual approximation algorithm for
@@ -39,6 +40,86 @@
         the manufacturer's problem.
       \end{enumerate}
     \end{question}
+    \begin{enumerate}[a.]
+    \item For $t$ tests, there are $2^t$ product codes, so there can be at most
+      $2^t$ products distinguished by these tests (and this is only if the tests
+      provide the best case amount of information).  It follows that for $n$
+      products, the minimum number of tests is $\lceil \log n \rceil$, so
+      $t \in \Omega(\log n)$.
+    \item We define the variable $x_i$ for $1 \le i \le k$ as follows:
+      \begin{equation*}
+        x_i = \left\{\begin{array}{ll}
+            1 &\text{ if test }i\text{ is included in the set} \\
+            0 &\text{ otherwise}
+          \end{array}\right.
+      \end{equation*}
+      These $x_i$ are the variables we need to find.  Similarly, we define the
+      variables $d_{iab}$ for $a,b \in [1, n]$:
+      \begin{equation*}
+        d_{iab} = \left\{\begin{array}{ll}
+                           1 &\text{ if test }i\text{ distinguishes substances }a,b \\
+                           0 &\text{ otherwise}
+                         \end{array}\right.
+      \end{equation*}
+      These $d_{iab}$ variables are inputs to the problem.  With this
+      formulation, we can define the following integer linear program to solve
+      this problem:
+
+      \begin{align*}
+        \min \sum_{i=1}^k x_i &\text{ s.t.} \\
+        \sum_{i=1}^k d_{iab} x_i \ge 0 &\:\:\:\: \forall a,b \in [1,n]: a \ne b \\
+        x_i \in \{0,1\} &\:\:\:\: \forall i \in [1, k] \\
+      \end{align*}
+    \item Here is the beginnings of the formulation of the dual of this program:
+      \begin{align*}
+        \max 0 &\text{ s.t.} \\
+        \sum_{a,b \in [1,n]: a \ne b} d_{iab} \alpha_{ab} \le 1 &\:\:\:\: \forall i \in [1,k] \\
+      \end{align*}
+
+      While this dual is not complete, it can give us the following
+      complementary slackness conditions:
+
+      \begin{enumerate}
+      \item $x_i \left(\sum_{a,b \in [1,n]: a \ne b} d_{iab} \alpha_{ab} - 1\right) = 0$
+      \item $\alpha_{ab} \left(\sum_{i=0}^k x_i d_{iab}\right) = 0$
+      \end{enumerate}
+
+      We can use this to come up with a primal-dual algorithm very similar to
+      the one presented in class for Hitting Set:
+
+      \begin{algorithmic}
+        \Function{Primal-Dual}{$d_{ab}$ values}
+          \State $\vec{x} \gets 0$
+          \State $\vec{\alpha} \gets 0$
+          \While{$\exists a,b: \sum_{i=1}^k x_i d_{iab} = 0$}
+            \Comment{while $\vec{x}$ is still infeasible}
+            \State increase $\alpha_{ab}$ until $\exists x_i: \sum_{a,b} \alpha_{ab} d_{iab} - 1 = 0$.
+            \State $x_i \gets 1$
+          \EndWhile
+          \State \Return $\vec{x}$
+        \EndFunction
+      \end{algorithmic}
+      This algorithm starts with an $\vec{x}$ and $\vec{\alpha}$ linked by
+      complementary slackness, but $\vec{x} = 0$ is not feasible (it represents
+      an empty set of tests).  At each iteration, it selects a pair of
+      substances which cannot be distinguished with the current set of tests.
+      It increases the $\alpha$ value until a test is identified that will
+      distinguish them.  This continues until all pairs of substances can be
+      distinguished, at which point the set of $t$ tests are the tests $i$ such
+      that $x_i=1$.
+    \item The linear relaxation of the primal ILP is:
+      \begin{align*}
+        \min \sum_{i=1}^k x_i &\text{ s.t.} \\
+        \sum_{i=1}^k d_{iab} x_i \ge 0 &\:\:\:\: \forall a,b \in [1,n]: a \ne b \\
+        0 \le x_i \le 1 &\:\:\:\: \forall i \in [1, k] \\
+      \end{align*}
+      Thus, the randomized approximation algorithm associated with the
+      manufacture's problem would be to solve this linear program, treat the
+      $x_i$'s as probabilities, and include each test $i$ in the set of tests
+      with probability $x_i$.  This would be repeated multiple times so as to
+      increase the probability that the solution is feasible.
+    \end{enumerate}
+
   \end{problem}
 
   \begin{problem}{2}
