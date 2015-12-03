@@ -143,6 +143,46 @@
       been inserted in the Bloom filter, derive a bound on the probability that
       the Bloom filter returns a false positive response.
     \end{question}
+
+    Since the hash function values are equally likely, the probability that the
+    hash of any element is equal to any array index is $\frac{1}{m}$.  We can
+    use this to compute the probability that $A[j] = 1$:
+
+    \begin{align*}
+      Pr[A[j] = 1] &= 1 - Pr[A[j] = 0] \\
+                   &= 1 - Pr\left[\bigcap_{i=1}^n \bigcap_{\ell=1}^k \{h_\ell(x_i) \ne j\}\right] \\
+                   &= 1 - \prod_{i=1}^n \prod_{\ell=1}^k \left(1 - \frac{1}{m}\right) \\
+                   &= 1 - \left(1 - \frac{1}{m}\right)^{nk}
+    \end{align*}
+
+    From this, we can determine the probability that $k$ indices are all 1:
+
+    \begin{align*}
+      Pr[A[h_\ell(x)] = 1, 1 \le \ell \le k] &= \left(1 - \left(1 - \frac{1}{m}\right)^{nk}\right)^k
+    \end{align*}
+
+    However, in the worst-case for the filter, all $k$ hash functions evaluate
+    to the same index, and so the worst case probability of a false positive is
+    simply:
+
+    \begin{align*}
+      Pr[\text{false positive}] \le 1 - \left(1 - \frac{1}{m}\right)^{nk}
+    \end{align*}
+
+    We might try to simplify this upper bound by noting that since
+    $n < \frac{mk}{2}$, we also have $nk < \frac{mk^2}{2}$.  This would mean
+    that:
+
+    \begin{align*}
+      \left(1 - \frac{1}{m}\right)^{nk} \ge 
+      \left(1 - \frac{1}{m}\right)^{\frac{mk^2}{2}} = 
+      \left(\left(1 - \frac{1}{m}\right)^m\right)^{\frac{k^2}{2}}
+    \end{align*}
+
+    However, from there, we can only say that
+    $\left(1 - \frac{1}{m}\right)^m \le e^{-1}$, and this will not let us say
+    anything meaningful about the original bound.  So, we are stuck with the
+    bound on the false positive rate given above.
   \end{problem}
 
   \begin{problem}{3}
