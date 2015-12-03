@@ -298,6 +298,12 @@
       cache of size $m$, whereas the optimal algorithm will only miss $O(m)$
       times.
     \end{question}
+
+    Consider the following sequence of $n$ requests:
+    $[0, 1, 2, \dots, m, 0, 1, 2, \dots, m, \dots]$.  Using LFU, there will be a
+    total of $n$ page faults, whereas the best strategy would be to simply evict
+    the most recently used page, which would result in $m$ page faults
+    initially, plus one for every sequence of $0, 1, 2, \dots, m$ after.
   \end{problem}
 
 \end{document}
