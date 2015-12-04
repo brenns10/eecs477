@@ -211,6 +211,61 @@
         the vector of all ones.
       \end{enumerate}
     \end{question}
+
+    \begin{enumerate}[a.]
+    \item Assume that there exists an optimal solution for this problem, where
+      there is a vector $v_i$ which is nonzero but none of its components are
+      $\pm 1$.  Let one such nonzero component be indexed by $k$.  It must be
+      the case that $\sum_{j} -v_i(k) * v_j(k)$ is positive (otherwise,
+      $v_{i}(k)$ would be zero, thus improving the objective function).  So, by
+      increasing the magnitude of $v_i(k)$ until it reaches $\pm 1$, we can
+      create a new solution which is also feasible, and has a better objective
+      value.  This gives a contradiction.  Therefore, if a solution is optimal,
+      then all nonzero vectors must have at least one component that is $\pm 1$.
+    \item Assume there is an optimal solution which has a zero vector $v_i$.
+      Take any element $k$ of that vector, and look at the component that
+      contributes to the objective function:
+      $\sum_{j} - v_i(k) * v_j(k) = - v_i(k) \sum_{j} v_j(k)$.  If
+      $\sum_{j} v_j(k)$ is positive or negative, then the solution must not have
+      been optimal to begin with (you can improve the objective value by setting
+      $v_i(k)$.  Therefore, $\sum_{j} v_j(k) = 0$.  This means that you can set
+      $v_i(k)$ to 1 or -1, obtaining an equivalent optimal feasible solution
+      that has no nonzero vectors.
+    \item The quadratic programming relaxation has a hypercube as the feasible
+      region, because the constraints are linear in the vectors.  The SDP as a
+      sphere as the feasible region, because the constraints are linear in the
+      dot products of the vectors.
+    \item Below:
+      \begin{align*}
+        H = \begin{bmatrix*} 
+          0 & I \\
+          0 & 0 \\
+        \end{bmatrix*}
+      \end{align*}
+      Each entry in the above matrix is a square matrix of size $n$ by $n$.  0
+      is the $n$ by $n$ zero matrix, and $I$ is the $n$ by $n$ identity.
+    \item Let
+      \begin{align*}
+        x = \begin{bmatrix*} v_1 \\ v_1 \\ v_2 \\ v_2 \\ \vdots \\ v_n \\ v_n \end{bmatrix*}
+      \end{align*}
+
+      and
+
+      \begin{align*}
+        Q = \begin{bmatrix*} 
+          0 & 0 & \dots & 0 & 0 \\
+          a_{21} H & 0 & \dots & 0 & 0 \\
+          a_{31} H & a_{32} H & \dots & 0 & 0 \\
+          \vdots & \vdots & \ddots & \vdots & \vdots \\
+          a_{n1} H & a_{n2} H & \dots & a_{n,n-1}H & 0 \\
+        \end{bmatrix*}
+      \end{align*}
+
+      $x$ is a $2n^2$ length vector, and $Q$ is $2n^2$ by $2n^2$ matrix.  Each
+      entry in $Q$ above is either the $2n$ by $2n$ zero matrix, or the $2n$ by
+      $2n$ matrix $H$ defined in problem d.  When you take the product $x^T Q x$
+      you obtain the original formula.
+    \end{enumerate}
   \end{problem}
 
   \begin{problem}{4}
